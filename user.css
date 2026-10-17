@@ -1,0 +1,403 @@
+* {
+    --spice-main-elevated: rgba(0, 0, 0, 0.4);
+}
+
+/* --------------------------------- */
+/* Main background with custom image */
+/* --------------------------------- */
+
+.Root,
+.Root__top-container {
+    background-color: unset !important;
+    background-size: cover;
+    background-position: center;
+}
+
+/* ------------- */
+/* Nyan Cat bars */
+/* ------------- */
+
+.progress-bar__slider,
+[data-testid="progress-bar-handle"],
+.x-progressBar-handle {
+    transform: translate(-50%, -50%) !important;
+    background-color: transparent !important;
+    background-image: url("https://www.nyan.cat/cats/original.gif");
+    background-size: cover;
+    height: 20px;
+    width: 32px;
+    box-shadow: none;
+    display: flex;
+}
+
+.aZtKYi6r4EG1_WHGpmn9,
+.x-progressBar-fillColor,
+.progress-bar .x-progressBar-fillColor,
+.progress-bar.C3aDrdkTt8_5Fll2OCA7 .x-progressBar-fillColor,
+.x-progressBar-foreground {
+    background-color: transparent !important;
+    background-image: var(
+        --cat-bar-fill,
+        linear-gradient(
+            90deg,
+            rgba(255, 0, 0, 1) 0%,
+            rgba(255, 154, 0, 1) 10%,
+            rgba(208, 222, 33, 1) 20%,
+            rgba(79, 220, 74, 1) 30%,
+            rgba(63, 218, 216, 1) 40%,
+            rgba(47, 201, 226, 1) 50%,
+            rgba(28, 127, 238, 1) 60%,
+            rgba(95, 21, 242, 1) 70%,
+            rgba(186, 12, 248, 1) 80%,
+            rgba(251, 7, 217, 1) 90%,
+            rgba(255, 0, 0, 1) 100%
+        )
+    ) !important;
+}
+
+/* ----------------------------------------------- */
+/* Optional panel blur (set per theme: blur in px) */
+/* ----------------------------------------------- */
+
+.main-nowPlayingBar-nowPlayingBar,
+[data-testid="now-playing-bar"],
+.Root__main-view,
+#Desktop_LeftSidebar_Id > * > * {
+    backdrop-filter: blur(var(--cat-blur, 0px));
+}
+
+/* ---------------------------------------------------------------- */
+/* Accent controls (only for themes that define `accent` in theme.js) */
+/* ---------------------------------------------------------------- */
+
+/* Play / pause button (Encore buttons paint the circle on an inner span and via variables) */
+:root[data-cat-accent] [data-testid="control-button-playpause"],
+:root[data-cat-accent] [data-testid="control-button-playpause"] > span,
+:root[data-cat-accent] [data-testid="control-button-playpause"] > div {
+    --background-base: var(--cat-accent) !important;
+    --background-highlight: var(--cat-accent) !important;
+    --background-press: var(--cat-accent) !important;
+    --text-base: #fff !important;
+    background-color: var(--cat-accent) !important;
+    color: #fff !important;
+    fill: #fff !important;
+}
+
+/* Selected filter chip: Spotify adds these Encore classes when a chip is selected */
+/* Chips are checked buttons with a text span and no icon (so heart/shuffle/repeat are excluded) */
+:root[data-cat-accent] .Root__main-view button[aria-checked="true"]:not(:has(svg)),
+:root[data-cat-accent] .Root__main-view button[aria-checked="true"]:not(:has(svg)) > span,
+:root[data-cat-accent] #Desktop_LeftSidebar_Id button[aria-checked="true"]:not(:has(svg)),
+:root[data-cat-accent] #Desktop_LeftSidebar_Id button[aria-checked="true"]:not(:has(svg)) > span,
+:root[data-cat-accent] .main-yourLibraryX-filterArea button[aria-checked="true"],
+:root[data-cat-accent] .main-yourLibraryX-filterArea button[aria-checked="true"] > span,
+:root[data-cat-accent] .search-searchCategory-catergoryGrid button[aria-checked="true"],
+:root[data-cat-accent] .search-searchCategory-catergoryGrid button[aria-checked="true"] span,
+:root[data-cat-accent] .encore-light-theme.encore-inverted-light-set,
+:root[data-cat-accent] .encore-light-theme.encore-inverted-light-set > *,
+:root[data-cat-accent] .ChipInnerComponent-sm[aria-checked="true"],
+:root[data-cat-accent] [aria-checked="true"] > .ChipInnerComponent-sm,
+:root[data-cat-accent] [aria-checked="true"].ChipInnerComponent-sm,
+:root[data-cat-accent] [aria-checked="true"][class*="Chip"],
+:root[data-cat-accent] [aria-checked="true"] > [class*="ChipInner"] {
+    --background-base: var(--cat-accent) !important;
+    --text-base: #fff !important;
+    background-color: var(--cat-accent) !important;
+    color: #fff !important;
+}
+
+/* Scrollbars (selectors from the OverlayScrollbars theme Spotify uses) */
+:root[data-cat-accent]
+    .os-theme-spotify
+    > .os-scrollbar-vertical
+    > .os-scrollbar-track
+    > .os-scrollbar-handle {
+    background-color: var(--cat-accent) !important;
+}
+
+/* ------------------------------------------------------------- */
+/* Global accent retint: replaces Spotify green everywhere it leaks */
+/* (variables Spotify's Encore components read; same approach as   */
+/* the Flow / BurntSienna reference themes)                        */
+/* ------------------------------------------------------------- */
+
+:root[data-cat-accent] .encore-dark-theme,
+:root[data-cat-accent] .encore-dark-theme .encore-base-set,
+:root[data-cat-accent] body {
+    --essential-bright-accent: var(--cat-accent) !important; /* liked heart, toggles, checks */
+    --text-bright-accent: var(--cat-accent-light) !important; /* playing track title, links */
+    --essential-positive: var(--cat-accent-light) !important;
+}
+
+/* Green circular buttons (playlist play, "Play" on pages, etc.) */
+:root[data-cat-accent] .encore-dark-theme .encore-bright-accent-set {
+    --background-base: var(--cat-accent) !important;
+    --background-highlight: var(--cat-accent-light) !important;
+    --background-press: var(--cat-accent) !important;
+    --decorative-subdued: var(--cat-accent) !important;
+}
+
+/* Search bar: accent only the internals (no outline around the whole box) */
+:root[data-cat-accent] form[role="search"],
+:root[data-cat-accent] [data-testid="top-search-input"] {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+:root[data-cat-accent] form[role="search"] input {
+    caret-color: var(--cat-accent-light);
+}
+
+:root[data-cat-accent] form[role="search"]:hover svg,
+:root[data-cat-accent] form[role="search"]:focus-within svg {
+    color: var(--cat-accent-light) !important;
+    fill: var(--cat-accent-light) !important;
+}
+
+:root[data-cat-accent] form[role="search"] kbd,
+:root[data-cat-accent] form[role="search"] [class*="kbd" i] {
+    border-color: var(--cat-accent) !important;
+    color: var(--cat-accent-light) !important;
+}
+
+:root[data-cat-accent] form[role="search"]:hover input::placeholder,
+:root[data-cat-accent] form[role="search"]:focus-within input::placeholder {
+    color: var(--cat-accent-light);
+}
+
+/* Keyboard focus ring and text selection */
+:root[data-cat-accent] :focus-visible {
+    outline-color: var(--cat-accent-light) !important;
+}
+
+:root[data-cat-accent] ::selection {
+    background: var(--cat-accent);
+    color: #fff;
+}
+
+/* Active shuffle / repeat / lyrics-style toggles (icon + the little dot below) */
+:root[data-cat-accent] .player-controls button[aria-checked="true"],
+:root[data-cat-accent] .player-controls button[aria-checked="mixed"],
+:root[data-cat-accent] .main-nowPlayingBar-extraControls button[aria-checked="true"],
+:root[data-cat-accent] [data-testid="control-button-repeat"][aria-checked="true"],
+:root[data-cat-accent] [data-testid="control-button-shuffle"][aria-checked="true"] {
+    color: var(--cat-accent-light) !important;
+}
+
+:root[data-cat-accent] .player-controls button[aria-checked="true"]::after,
+:root[data-cat-accent] .player-controls button[aria-checked="mixed"]::after,
+:root[data-cat-accent] .main-nowPlayingBar-extraControls button[aria-checked="true"]::after {
+    background-color: var(--cat-accent-light) !important;
+}
+
+/* Hover state of the bottom-bar and top-bar icon buttons */
+:root[data-cat-accent] .player-controls button:hover,
+:root[data-cat-accent] .main-nowPlayingBar-extraControls button:hover,
+:root[data-cat-accent] #global-nav-bar button:hover {
+    color: var(--cat-accent-light) !important;
+}
+
+/* Lyrics preview card: replaces the album-art color with a dark panel */
+:root[data-cat-accent] [style*="lyrics-color-background"],
+:root[data-cat-accent] .main-nowPlayingView-lyricsContent {
+    background-color: rgba(0, 0, 0, 0.55) !important;
+    border: 1px solid var(--cat-accent);
+    border-radius: 8px;
+}
+
+/* ---------------------- */
+/* Transparent Background */
+/* ---------------------- */
+
+/* Global */
+.Root__globalNav,
+.global-nav > *,
+/* Top bar */
+.Root__nav-bar,
+#global-nav-bar,
+
+.main-entityHeader-container > *,
+.playlist-playlist-playlistContent,
+
+/* Playlist colored background */
+.main-entityHeader-backgroundColor,
+._ddPhxHdxmpT13IbjTmr,
+.QqprhKqwqIsC3c9SIKOE,
+.sxMpFt17cJVTesE9u6fX,
+.playlist-playlist-actionBarBackground-background,
+.main-actionBarBackground-background,
+.lyrics-lyrics-background,
+.main-view-container__scroll-node-child
+    > main
+    > section
+    > div
+    > div:nth-child(2),
+.Bdcf5g__Rug3TGqSdbiy,
+[data-testid="playlist-page"] [data-testid="entity-header"] > *,
+
+/* Bottom bar of the app */
+.Root__now-playing-bar,
+:has(>[data-testid="now-playing-bar"]),
+.Root__now-playing-bar > button,
+:has(>[data-testid="now-playing-bar"]) > button,
+
+/* Sidebar left your library */
+#Desktop_LeftSidebar_Id,
+.YourLibraryX,
+.main-yourLibraryX-libraryRootlist [role="presentation"],
+.main-yourLibraryX-libraryRootlist [aria-rowindex="1"],
+
+#Desktop_PanelContainer_Id::before,
+.main-home-homeHeader,
+.main-view-container__scroll-node-child > * > *,
+.artist-artistDiscography-headerContainer,
+.main-view-container__scroll-node-child > main > section > div:last-child,
+.search-searchCategory-contentArea::after,
+
+/* Small black gradient on rhs video player */
+.main-nowPlayingView-contextItemInfo::before,
+.f8pB2G3XUFXNNPQ_Ppxb:before,
+
+.Box-group-naked-listRow-isInteractive-hasLeadingOrMedia-draggable-minBlockSize_56px,
+/* Artist page colored background */
+    .main-view-container
+    .before-scroll-node
+    > *
+    > :last-child,
+.main-view-container .before-scroll-node > * > :last-child:after,
+.oCSWtOAH_CgjIsi_H_PS,
+[data-testid="overscroll-background"],
+
+/* Fullscreen artist page on playing music */
+/* [data-overlayscrollbars-viewport="scrollbarHidden overflowXHidden overflowYScroll"]>*>*>*>*>*:first-child, */
+
+/* Right sidebar for queue */
+.Root__right-sidebar > *,
+.iZl4hCeW2xyCCK5nSCCL,
+
+/* Right sidebar collapsed */
+.Root__right-sidebar-fauxMainViewEnd > *,
+.SC_eWQl28srvyLED > *,
+
+/* Fullscreen lyrics */
+[data-overlayscrollbars-initialize="true"]:has(#VideoPlayerCinema_ReactPortal),
+.lyrics-lyrics-container:first-child,
+:has(+ .lyrics-lyrics-container),
+/* Spicetify marketplace */
+.marketplace-header
+
+/* Remove bg */ {
+    background-color: transparent !important;
+    background-image: none !important;
+}
+
+/* ---------------------------- */
+/* See through black background */
+/* ---------------------------- */
+
+/* Bottom now Playing bar */
+.main-nowPlayingBar-nowPlayingBar,
+[data-testid="now-playing-bar"],
+
+.view-homeShortcutsGrid-shortcut,
+#Desktop_PanelContainer_Id,
+/* Center main view in the middle of the screen */
+.Root__main-view,
+#main-view,
+
+/* Sidebar left your library */
+#Desktop_LeftSidebar_Id > * > *,
+.main-yourLibraryX-library,
+
+/* Right sidebar collapsed */
+.Root__right-sidebar-overlay,
+.wJiY1vDfuci2a4db,
+.Clgyk1V8iQGkU1G6m5Lo,
+
+/* Filter tags */
+.ChipInnerComponent-sm {
+    background-color: var(--spice-main-elevated) !important;
+}
+
+/* --------------- */
+/* Rounded corners */
+/* --------------- */
+
+.main-nowPlayingBar-nowPlayingBar,
+[data-testid="now-playing-bar"],
+#Desktop_PanelContainer_Id {
+    border-radius: 8px;
+}
+
+/* -------------------------- */
+/* Artist page image gradient */
+/* -------------------------- */
+
+[data-testid="background-image"],
+.main-view-container .before-scroll-node > * > :first-child {
+    mask-image: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 1),
+        rgba(0, 0, 0, 0)
+    );
+    position: absolute;
+}
+
+/* Rotate cat paw previous and next buttons */
+[data-testid="control-button-skip-forward"] {
+    rotate: 90deg;
+}
+
+[data-testid="control-button-skip-back"] {
+    rotate: -90deg;
+}
+
+/* ------------ */
+/* No Opacctity */
+/* ------------ */
+
+/* Right sidebar collapsed */
+.Root__right-sidebar-collapsed
+.Root__right-sidebar-peekContent[aria-hidden="true"],
+.fEThIghNSPAx5Xs3 .a_fKt7xvd8od_kEb[aria-hidden="true"] {
+    opacity: 0;
+}
+
+/* ---- */
+/* MISC */
+/* ---- */
+
+[data-tippy-root] form {
+    --background-elevated-base: unset;
+}
+
+.Root__top-container:has(#VideoPlayerCinema_ReactPortal) {
+    padding: 0;
+}
+
+/* Do not display background elements when fullscreen lyrics */
+#main:has(#VideoPlayerCinema_ReactPortal) {
+    & .Root__main-view,
+    .Root__right-sidebar,
+    .Root__nav-bar {
+        display: none !important;
+    }
+
+    /* .Root__globalNav {
+        background: black !important;
+    } */
+}
+
+/* Do not display main view when expanded library */
+#main:not(:has(#Desktop_LeftSidebar_Id > .LayoutResizer__resize-bar))
+.Root__main-view,
+#main:not(:has(#Desktop_LeftSidebar_Id > .LayoutResizer__resize-bar))
+#main-view {
+    display: none !important;
+}
+
+:has([data-overlayscrollbars-initialize="true"]):has(
+    #VideoPlayerCinema_ReactPortal
+) {
+    outline: none !important;
+}
